@@ -10,7 +10,7 @@ export const AssignmentProvider = ({ children }) => {
   const fetchAssignments = async () => {
     try {
       setLoading(true);
-      const data = await getAllAssignments();  // Aquí debe retornar los datos de tus asignaciones
+      const data = await getAllAssignments();  
       setAssignments(data);
     } catch (err) {
       console.error("Failed to fetch assignments:", err);
