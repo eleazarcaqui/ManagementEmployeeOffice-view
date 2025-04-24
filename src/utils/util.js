@@ -1,0 +1,88 @@
+/src
+/assets
+  /images
+  /icons
+  /fonts
+/components
+  /common
+    Button.jsx
+    Card.jsx
+    Modal.jsx
+    Dropdown.jsx
+    Table.jsx
+  /employee
+    EmployeeForm.jsx
+    EmployeeList.jsx
+    EmployeeCard.jsx
+    EmployeeDetail.jsx
+  /office
+    OfficeForm.jsx
+    OfficeList.jsx
+    OfficeCard.jsx
+    OfficeDetail.jsx
+  /assignment
+    AssignmentForm.jsx
+    AssignmentList.jsx
+/layouts
+  MainLayout.jsx
+  AuthLayout.jsx
+/pages
+  /auth
+    Login.jsx
+    Register.jsx
+    ForgotPassword.jsx
+  /dashboard
+    Dashboard.jsx
+  /employees
+    EmployeesPage.jsx
+    CreateEmployeePage.jsx
+    EditEmployeePage.jsx
+    ViewEmployeePage.jsx
+  /offices
+    OfficesPage.jsx
+    CreateOfficePage.jsx
+    EditOfficePage.jsx
+    ViewOfficePage.jsx
+  /assignments
+    AssignmentsPage.jsx
+/routes
+  privateRoutes.jsx
+  publicRoutes.jsx
+  AppRouter.jsx
+/services
+  api.js
+  employeeService.js
+  officeService.js
+  assignmentService.js
+  authService.js
+/environments
+  environment.js
+  environment.development.js
+  environment.production.js
+/context
+  /employee
+    EmployeeContext.jsx
+    EmployeeProvider.jsx
+  /office
+    OfficeContext.jsx
+    OfficeProvider.jsx
+  /assignment
+    AssignmentContext.jsx
+    AssignmentProvider.jsx
+  /auth
+    AuthContext.jsx
+    AuthProvider.jsx
+/hooks
+  useForm.js
+  useAuth.js
+  useEmployees.js
+  useOffices.js
+/utils
+  constants.js
+  formatters.js
+  validators.js
+  helpers.js
+/config
+  config.js
+App.jsx
+index.js
