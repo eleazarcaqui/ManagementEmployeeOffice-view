@@ -10,6 +10,14 @@ export const getAssignmentsByEmployeeId = async (employeeId) => {
   return data;
 };
 
+export const getAllAssignments = async () => {
+  const response = await fetch(`${API_URL}/employee-office-assignments`);
+  if (!response.ok) throw new Error("Error fetching all assignments");
+
+  const data = await response.json();
+  return data;
+};
+
 export const getAssignmentsByOfficeId = async (officeId) => {
   const response = await fetch(`${API_URL}/employee-office-assignments/office/${officeId}`);
   if (!response.ok) throw new Error("Error fetching office assignments");

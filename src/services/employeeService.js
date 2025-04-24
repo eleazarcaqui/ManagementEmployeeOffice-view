@@ -10,7 +10,6 @@ export const getEmployees = async () => {
   if (!response.ok) throw new Error("Error fetching employees");
 
   const data = await response.json();
-  console.log(data); 
 
   return data.content;
 };

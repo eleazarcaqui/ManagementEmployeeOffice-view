@@ -1,5 +1,5 @@
 import React from 'react';
-import { BrowserRouter as Router, Routes, Route, Navigate } from 'react-router-dom';
+import { Routes, Route, Navigate } from 'react-router-dom';
 import { useContext } from 'react';
 import { AuthContext } from '../context/auth/AuthContext';
 
@@ -18,6 +18,7 @@ import OfficesPage from '../pages/offices/OfficesPage';
 import { OfficeProvider } from "../context/office/OfficeProvider";
 
 import AssignmentsPage from '../pages/assigments/AssigmentPage';
+import { AssignmentProvider } from '../context/assignment/AssignmentProvider';
 
 
 const ProtectedRoute = ({ children }) => {
@@ -30,7 +31,7 @@ const ProtectedRoute = ({ children }) => {
   }
 
   if (!isAuthenticated) {
-    return <Navigate to="/auth/login" />;
+    return <Navigate to="/auth/login" replace />;
   }
 
   return children;
@@ -46,7 +47,7 @@ const PublicRoute = ({ children }) => {
   }
 
   if (isAuthenticated) {
-    return <Navigate to="/dashboard" />;
+    return <Navigate to="/dashboard" replace />;
   }
 
   return children;
@@ -54,9 +55,9 @@ const PublicRoute = ({ children }) => {
 
 const AppRouter = () => {
   return (
-    <Router>
-      <EmployeeProvider>
-        <OfficeProvider>
+    <EmployeeProvider>
+      <OfficeProvider>
+        <AssignmentProvider>
           <Routes>
             <Route path="/auth" element={
               <PublicRoute>
@@ -71,18 +72,22 @@ const AppRouter = () => {
                 <MainLayout />
               </ProtectedRoute>
             }>
-              <Route index element={<Navigate to="/dashboard" />} />
+              <Route index element={<Navigate to="/dashboard" replace />} />
               <Route path="dashboard" element={<Dashboard />} />
+
               <Route path="employees">
                 <Route index element={<EmployeesPage />} />
               </Route>
 
               <Route path="offices">
                 <Route index element={<OfficesPage />} />
-
               </Route>
-              <Route path="assignments" element={<AssignmentsPage />} />
+
+              <Route path="assignments">
+                <Route index element={<AssignmentsPage />} />
+              </Route>
             </Route>
+
             <Route path="*" element={
               <div className="flex flex-col items-center justify-center h-screen">
                 <h1 className="text-4xl font-bold text-gray-800 mb-4">404</h1>
@@ -96,11 +101,10 @@ const AppRouter = () => {
               </div>
             } />
           </Routes>
-        </OfficeProvider>
-      </EmployeeProvider>
-    </Router>
+        </AssignmentProvider>
+      </OfficeProvider>
+    </EmployeeProvider>
   );
 };
 
 export default AppRouter;
-
