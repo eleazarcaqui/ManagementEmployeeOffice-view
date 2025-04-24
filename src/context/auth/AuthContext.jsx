@@ -7,10 +7,7 @@ export const AuthProvider = ({ children }) => {
   const [currentUser, setCurrentUser] = useState(null);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState(null);
-  // Agrega estado para controlar si se ha inicializado la app
   const [initialized, setInitialized] = useState(false);
-
-  // Efecto para inicializar la autenticación al cargar la app
   useEffect(() => {
     const initAuth = async () => {
       setLoading(true);
@@ -30,7 +27,6 @@ export const AuthProvider = ({ children }) => {
             setCurrentUser(JSON.parse(storedUser));
           }
         } else {
-          // Token inválido, limpiar storage
           localStorage.removeItem('token');
           localStorage.removeItem('user');
         }
@@ -43,19 +39,13 @@ export const AuthProvider = ({ children }) => {
         setInitialized(true);
       }
     };
-
-    // Iniciar el proceso de autenticación
     initAuth();
   }, []);
-
-  // Listener para eventos de storage (para sincronización entre pestañas)
   useEffect(() => {
     const handleStorageChange = (e) => {
       if (e.key === 'token' && !e.newValue) {
-        // Token removido en otra pestaña
         setCurrentUser(null);
       } else if (e.key === 'user' && e.newValue) {
-        // Usuario actualizado en otra pestaña
         try {
           setCurrentUser(JSON.parse(e.newValue));
         } catch (error) {
@@ -73,8 +63,6 @@ export const AuthProvider = ({ children }) => {
       setLoading(true);
       setError(null);
       const { token, user } = await loginService(email, password);
-
-      // Guardar en localStorage y estado
       localStorage.setItem('token', token);
       localStorage.setItem('user', JSON.stringify(user));
       setCurrentUser(user);
@@ -113,7 +101,6 @@ export const AuthProvider = ({ children }) => {
     initialized
   };
 
-  // No renderices nada hasta que la autenticación se haya inicializado
   if (!initialized) {
     return (
       <div className="flex items-center justify-center h-screen">

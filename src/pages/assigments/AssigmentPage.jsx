@@ -1,5 +1,5 @@
 import React, { useEffect, useState } from 'react';
-import { getAllAssignments } from '../../services/employeeOfficeAssignmentService';  // Asegúrate de que la ruta sea correcta
+import { getAllAssignments } from '../../services/employeeOfficeAssignmentService'; 
 
 const AssignmentsPage = () => {
     const [assignments, setAssignments] = useState([]);
@@ -11,8 +11,8 @@ const AssignmentsPage = () => {
         const fetchAssignments = async () => {
             try {
                 setLoading(true);
-                const data = await getAllAssignments();  // Usamos el método getAllAssignments aquí
-                setAssignments(data.content || []);  // Actualizamos el estado con las asignaciones obtenidas
+                const data = await getAllAssignments(); 
+                setAssignments(data.content || []); 
             } catch (error) {
                 console.error('Error fetching assignments:', error);
             } finally {
